@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="author" content="Saturn" />
+      <meta content="The Game Collection" property="og:title" />
+      <meta content="Best HTML game site!" property="og:description" />
+      <meta name="theme-color" content="#858385">
+      <meta property="og:image" content="/icons.png">
+      <title>The Game Collection | Retro Bowl</title>
+      <link rel="icon" type="image/png" href="/icons.png" />
+      <script src="/js/fontawesome.js"></script>
+      <link rel="stylesheet" href="/game-assets/scripts/gamepage.css" />
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4536794942189475" crossorigin="anonymous"></script>
+     </head>
+     <!-- Google tag (gtag.js) -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CB3H5R2GXY"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+   
+       function gtag() {
+         dataLayer.push(arguments);
+       }
+       gtag('js', new Date());
+       gtag('config', 'G-CB3H5R2GXY');
+     </script>
+     <body>
+       <div class="tgcnavbar">
+         <div class="navbuttons">
+           <img class="navlogo" src="/game-assets/site-images/NavLogo.png" alt="">
+           <div id="clock"></div>
+           <script src="/js/clock.js"></script>
+           <a href="/">
+             <div class="navbutton" current>
+               <i class="fa-solid fa-house fa-xs" style="color: #ffffff;"></i> Home
+             </div>
+           </a>
+           <a href="/games">
+             <div class="navbutton">
+               <i class="fa-solid fa-gamepad-modern fa-xs" style="color: #ffffff;"></i> Games
+             </div>
+           </a>
+           <a href="/events">
+             <div class="navbutton">
+               <i class="fa-solid fa-calendar-days fa-xs" style="color: #ffffff;"></i> Events
+             </div>
+           </a>
+           <a href="/leaderboards">
+             <div class="navbutton">
+               <i class="fa-solid fa-signal fa-xs" style="color: #ffffff;"></i> Leaderboards
+             </div>
+           </a>
+           <a href="/extra">
+             <div class="navbutton">
+               <i class="fa-solid fa-fire fa-xs" style="color: #ffffff;"></i> Extra
+             </div>
+           </a>
+           <a href="/settings">
+             <div class="navbutton">
+               <i class="fa-solid fa-gear fa-xs" style="color: #ffffff;"></i> Settings
+             </div>
+           </a>
+           <a href="/credits">
+             <div class="navbutton">
+               <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> Credits
+             </div>
+           </a>
+         </div>
+      </div>
+      <div id="gameframe">
+         <div class="gameDisplay">
+            <div class="game">
+               <iframe id="iframe" src="/game-assets/gamestorage/retro-bowl/"></iframe>
+            </div>
+            <div class="options">
+               <div class="left">
+                  <div class="gametext">
+                     <img src="/game-assets/images/retrobowl.png" class="gameicon" />
+                     <div class="margin">
+                        <div class="flex">
+                           <h1 class="titletext">Retro Bowl</h1>
+                        </div>
+                        <span class="bytext">By New Star Games</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="right">
+                  <img id="reloadbtn" src="/game-assets/site-images/reload.png" class="reloadbtn" border="0" />
+                  <script src="/js/reload.js"></script>
+                  <img onclick="openFullscreen();" type="fullscreen" src="/game-assets/site-images/fullscreen.png" class="fullscreenbtn" border="0" />
+                  <script src="/js/fullscreen.js"></script>
+                </div>
+            </div>
+         </div>
+      </div>
+      <div class="addisplay">
+         <div class="ad1">Advertisement</div>
+      </div>
+      <center>
+         <div class="anticloseframe">
+               <h1 class="aniticlosetitle">Anti Close</h1>
+               <p class="aniticlosedes">Keeps nosey teachers from closing out your tab, so you can keep gaming with out interruptions.</p>
+               <label onclick="anticlose()" class="switch">
+               <input type="checkbox">
+               <span class="slider round"></span>
+               <script src="/js/anticlose.js"></script>
+         </div>
+      </center>
+      <div class="aboutsection">
+         <h1 class="abouttitle">Description</h1>
+         <p class="aboutparagraph">The goal of the game is for the player to manage their team to the Retro Bowl championship game. The game also includes aspects of managing an American football team such as trading and cutting players, signing free agents, maintaining morale, drafting players, and more.</p>
+         <div style="margin-top: 2vw;">
+         </div>
+         <div style="margin-top: 2vw;">
+         </div>
+         <h1 class="abouttitle">Developer</h1>
+         <p class="aboutparagraph">Retro Bowl</p>
+         <div style="margin-top: 2vw;">
+         </div>
+         <h1 class="abouttitle">Controls</h1>
+         <p class="aboutparagraph">Mouse And Click</p>
+         <div style="margin-top: 2vw;">
+         </div>
+         <h1 class="abouttitle">Platform</h1>
+         <p class="aboutparagraph">Web browser</p>
+         <div style="margin-top: 2vw;">
+         </div>
+         <h1 class="abouttitle">Last Updated</h1>
+         <p class="aboutparagraph">July 9, 2023</p>
+      </div>
+      <center>
+      <div class="recommendedgames">
+         <h1 class="recommendedtext">Recommended Games</h1>
+            <a href="/games/funny-shooter-2">
+            <img src="/game-assets/images/funny-shooter-2.png" class="recommendedgameicon">
+            </a>
+            <a href="/games/five-nights-at-freddys/">
+            <img src="/game-assets/images/five-nights-at-freddys.png" class="recommendedgameicon">
+            </a>
+            <a href="/games/poor-bunny">
+            <img src="/game-assets/images/poor-bunny.png" class="recommendedgameicon">
+            </a>
+            <a href="/games/tag">
+            <img src="/game-assets/images/tag.png" class="recommendedgameicon">
+            </a>
+         </center>
+      </div>
+      </div>
+      <div class="footer">
+         <div class="socials">
+            <center>
+               <a href="https://discord.gg/Dzjzv7mtbd">
+               <img src="/game-assets/site-images/discord.png" class="socialsbutton">
+               </a>
+               <a href="https://www.tiktok.com/@tgc.games">
+               <img src="/game-assets/site-images/tiktok.png" class="socialsbutton">
+               </a>
+               <a href="https://www.youtube.com/@tgcofficialgames">
+               <img src="/game-assets/site-images/youtube.png" class="socialsbutton">
+               </a>
+         </div>
+         <h1 class="footertext">© 2022-2023 Tgcofficial</h1>
+         </center>
+         <button onclick="backtogame()" id="backtogame"><i class="fa-solid fa-arrow-up fa-xs" style="color: #ffffff;"></i> Back To Game</button>
+         <script src="/js/backtotop.js"></script>
+      </div>
+   </body>
+</html>  
