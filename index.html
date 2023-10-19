@@ -1,301 +1,169 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>HTML5 Tetris</title>
-        <meta charset="UTF-8">
-
-        <link href='http://fonts.googleapis.com/css?family=Lemon|Gochi+Hand' rel='stylesheet' type='text/css'>
-
-        <link id="fav" rel="shortcut icon" type="image/png" href="http://www.xarg.org/favicon.ico" />
-        {literal}
-        <style>
-
-            a {
-                color: #000;
-                text-decoration: none;
-                font-family:Arial;
-            }
-
-            a:hover {
-                text-decoration: underline;
-            }
-
-            html{
-                overflow:hidden;
-            }
-
-            body {
-                background: #def;
-            }
-
-            #OfCourseItsMe {
-                font-family:Arial;
-                font-size: 11px;
-                text-decoration:none;
-                color: #78a;
-            }
-
-            #OfCourseItsMe a {
-                font-weight: bold;
-            }
-
-            #canvas {
-                border: 10px solid #78a;
-                background: #becfea;
-                position:absolute;
-                z-index:0;
-                left: 70px;
-            }
-
-            #preview {
-                position: absolute;
-                left: 550px;
-                border: 10px solid #78a;
-                background: #becfea;
-                top: 20px;
-                z-index: 1;
-            }
-
-            #highscore {
-                background: #78a;
-                position:absolute;
-                z-index: 100;
-
-                font-family: 'Gochi Hand', sans-serif;
-                font-size: 30px;
-                color: #fff;
-
-                width:400px;
-                left: 70px;
-                top: 300px;
-                text-align: center;
-                padding: 30px 0px;
-                display:none;
-            }
-
-            #nick {
-                border: 0px none;
-                background: #78a;
-                color:white;
-                font-family: inherit;
-                font-size: 20px;
-            }
-
-            #submit {
-                cursor:pointer;
-                font-family: inherit;
-                display:block;
-            }
-
-            #favicon {
-                display:none;
-            }
-
-            #edit, #best {
-                width: 400px;
-                position:absolute;
-                right: -442px;
-                top: 20px;
-                z-index: 2;
-                font-family: Arial;
-                font-size:14px;
-                border: 10px solid #000;
-                background: #fff;
-            }
-
-            #edit table {
-                border-collapse: collapse;
-                background: #becfea;
-                float:left;
-                margin: 5px;
-            }
-
-            #edit td {
-                width: 10px;
-                height: 10px;
-                background: #000;
-                margin: 2px;
-                border: 1px solid #fff;
-            }
-
-            #open, #open2 {
-                position:absolute;
-                left: -43px;
-                top: 20px;
-                padding:3px 10px;
-                background: #000;
-                color:white;
-                transform: rotate(90deg);
-                -ms-transform: rotate(90deg);
-                -webkit-transform: rotate(90deg);
-            }
-
-            #best table {
-                margin-top: 20px;
-                margin-left: 50px;
-                margin-bottom: 20px;
-            }
-
-            #open2 {
-                top: 90px;
-                left: -49px;
-            }
-
-            #best td {
-                padding: 5px;
-            }
-
-            h1 {
-                position:absolute;
-                left: -200px;
-                top: 200px;
-                margin:0px;
-                padding:0px;
-                font-size: 60px;
-                font-family: 'Lemon', cursive;
-                color: white;
-                text-shadow: -3px 3px #78a;
-
-                transform: rotate(270deg);
-                -ms-transform: rotate(270deg); /* IE 9 */
-                -webkit-transform: rotate(270deg); /* Safari and Chrome */
-            }
-
-            #stat {
-                font-family: 'Gochi Hand', sans-serif;
-                color: white;
-                text-shadow: 2px 2px #78a;
-                font-weight: bold;
-                font-size: 35px;
-            }
-
-            #xarg > img {
-                position:fixed;
-                right:20px;
-                bottom:20px;
-                z-index:1000;
-                border:0;
-            }
-
-            #restart {
-                position:absolute; 
-                z-index: 100; 
-                left: 170px;
-                top: 330px;
-                font-size: 30px;
-                font-family: 'Gochi Hand', sans-serif;
-                display:none;
-            }
-
-
-            #home {
-                display:none;
-                color: #c33;
-            }
-            
-            #slinks a {
-                color: #c00;
-            }
-
-        </style>
-        {/literal}
-    </head>
-    <body>
-
-        <h1>HTML5 TETRIS</h1>
-
-        <canvas id="canvas"></canvas>
-        <canvas id="preview"></canvas>
-        <canvas id="favicon"></canvas>
-
-        <div id="edit">
-            <div id="open">Edit</div>
-
-            <div><input id="tilesX" type="range" min="5" max="70" value="21" onchange="textBoxEdit(this)"> X <input id="tilesY" type="range" min="5" max="70" value="35" onchange="textBoxEdit(this)"> Tiles</div>
-            <div><input id="tilesSize" type="range" min="5" max="40" value="18" onchange="textBoxEdit(this)"> Tile-Size</div>
-            <div><input id="border" type="range" min="0" max="15" value="2" onchange="textBoxEdit(this)"> Border</div>
-            <div><input id="speedDelay" step="10" type="range" min="40" max="1000" value="200" onchange="textBoxEdit(this)"> Speed Delay</div>
-
-            <div><input type="checkbox" value="1" id="Cpause" onchange="textBoxEdit(this)"> Pause (p)</div>
-            <div><input type="checkbox" value="1" id="Cauto" onchange="textBoxEdit(this)"> Autopilot (a)</div>
-            <div><input type="checkbox" value="1" id="Cshadow" onchange="textBoxEdit(this)" checked="checked"> Shadow (s)</div>
-            <div><input type="checkbox" value="1" id="Cpreview" onchange="textBoxEdit(this)" checked="checked"> Preview (w)</div>
-            <div><input type="checkbox" value="1" id="Cfavicon" onchange="textBoxEdit(this)" checked="checked"> Favicon (f)</div>
-            <div><input type="checkbox" value="1" id="Cgamepad" onchange="textBoxEdit(this)"> Gamepad</div>
-
-            <div>Active shadow and preview reduces the score per tile!</div>
-
-            <div id="tables">
-
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="author" content="Saturn" />
+      <meta content="The Game Collection" property="og:title" />
+      <meta content="Best HTML game site!" property="og:description" />
+      <meta name="theme-color" content="#858385">
+      <meta property="og:image" content="/icons.png">
+      <title>The Game Collection | Funny Shooter 2</title>
+      <link rel="icon" type="image/png" href="/icons.png" />
+      <script src="/js/fontawesome.js"></script>
+      <link rel="stylesheet" href="/game-assets/scripts/gamepage.css" />
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4536794942189475" crossorigin="anonymous"></script>
+     </head>
+     <!-- Google tag (gtag.js) -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CB3H5R2GXY"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+   
+       function gtag() {
+         dataLayer.push(arguments);
+       }
+       gtag('js', new Date());
+       gtag('config', 'G-CB3H5R2GXY');
+     </script>
+     <body>
+       <div class="tgcnavbar">
+         <div class="navbuttons">
+           <img class="navlogo" src="/game-assets/site-images/NavLogo.png" alt="">
+           <div id="clock"></div>
+           <script src="/js/clock.js"></script>
+           <a href="/">
+             <div class="navbutton" current>
+               <i class="fa-solid fa-house fa-xs" style="color: #ffffff;"></i> Home
+             </div>
+           </a>
+           <a href="/games">
+             <div class="navbutton">
+               <i class="fa-solid fa-gamepad-modern fa-xs" style="color: #ffffff;"></i> Games
+             </div>
+           </a>
+           <a href="/events">
+             <div class="navbutton">
+               <i class="fa-solid fa-calendar-days fa-xs" style="color: #ffffff;"></i> Events
+             </div>
+           </a>
+           <a href="/leaderboards">
+             <div class="navbutton">
+               <i class="fa-solid fa-signal fa-xs" style="color: #ffffff;"></i> Leaderboards
+             </div>
+           </a>
+           <a href="/extra">
+             <div class="navbutton">
+               <i class="fa-solid fa-fire fa-xs" style="color: #ffffff;"></i> Extra
+             </div>
+           </a>
+           <a href="/settings">
+             <div class="navbutton">
+               <i class="fa-solid fa-gear fa-xs" style="color: #ffffff;"></i> Settings
+             </div>
+           </a>
+           <a href="/credits">
+             <div class="navbutton">
+               <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> Credits
+             </div>
+           </a>
+         </div>
+      </div>
+      <div id="gameframe">
+         <div class="gameDisplay">
+            <div class="game">
+               <iframe id="iframe" src="/game-assets/gamestorage/funny-shooter-2/"></iframe>
             </div>
-
-            <div id="slinks">
-                Share Custom Tetris<br>
-                <a id="sFB" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.xarg.org%2Fproject%2Ftetris%2F">FB</a> -
-                <a id="sTW" href="http://twitter.com/share?text=HTML5%20Tetris%20made%20by%20%40roberteisele&amp;url=http%3A%2F%2Fwww.xarg.org%2Fproject%2Ftetris%2F">TW</a> - 
-                <a id="sGP" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.xarg.org%2Fproject%2Ftetris%2F">G+</a>
+            <div class="options">
+               <div class="left">
+                  <div class="gametext">
+                     <img src="/game-assets/images/funny-shooter-2.png" class="gameicon" />
+                     <div class="margin">
+                        <div class="flex">
+                           <h1 class="titletext">Funny Shooter 2</h1>
+                        </div>
+                        <span class="bytext">By GoGoMan</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="right">
+                  <img id="reloadbtn" src="/game-assets/site-images/reload.png" class="reloadbtn" border="0" />
+                  <script src="/js/reload.js"></script>
+                  <img onclick="openFullscreen();" type="fullscreen" src="/game-assets/site-images/fullscreen.png" class="fullscreenbtn" border="0" />
+                  <script src="/js/fullscreen.js"></script>
+                </div>
             </div>
-
-        </div>
-
-        <div id="best">
-            <div id="open2">Score</div>
-
-            <table>
-
-                <tr>
-                    <th>Rank</th>
-                    <th>Name</th>
-                    <th>Score</th>
-                    <th>Lines</th>
-                </tr>
-                {local:$i}
-                {php}$i=0;{/php}
-                {fores $score as $s}
-                <tr>
-                    <td>#{!++$i}</td>
-                    <td>{$s.TName}</td>
-                    <td>{!$s.TScore}</td>
-                    <td>{!$s.TLine}</td>
-                </tr>
-                {/fores}
-            </table>
-
-        </div>
-
-        <div id="highscore">
-
-            <div>Enter your name</div>
-
-            <input type="text" id="nick" placeholder="Your name">
-
-            <span id="submit">go</span>
-
-        </div>
-
-        <div id="restart">
-            Click to restart
-        </div>
-
-        <div style="position:absolute;left: 560px;top: 250px;">
-
-            <div style="height: 100px;">
-                <a id="home" href="http://www.xarg.org/project/tetris/">Highscore participation</a>
-            </div>
-            <div id="stat">
-                Score: <span id="score">0</span><br>
-                Lines: <span id="lines">0</span><br>
-            </div>
-
-
-            <span id="OfCourseItsMe">by <a href="http://www.xarg.org/">Robert Eisele</a> (<a href="https://twitter.com/RobertEisele">Twitter</a>)<br>Source &amp; Description (<a href="https://github.com/infusion/HTML5-Tetris">Github</a>)</span>
-
-        </div>
-
-
-        <script src="/download/tetris.js"></script>
-
-        <a id="xarg" href="http://www.xarg.org/projects/"><img width="59" height="61" src="http://www.xarg.org/image/xarg-logo.png" alt="xarg open projects" /></a>
-
-    </body>
+         </div>
+      </div>
+      <div class="addisplay">
+         <div class="ad1">Advertisement</div>
+      </div>
+      <center>
+         <div class="anticloseframe">
+               <h1 class="aniticlosetitle">Anti Close</h1>
+               <p class="aniticlosedes">Keeps nosey teachers from closing out your tab, so you can keep gaming with out interruptions.</p>
+               <label onclick="anticlose()" class="switch">
+               <input type="checkbox">
+               <span class="slider round"></span>
+               <script src="/js/anticlose.js"></script>
+         </div>
+      </center>
+      <div class="aboutsection">
+         <h1 class="abouttitle">Description</h1>
+         <p class="aboutparagraph">Funny Shooter 2 is a 3D FPS (first person shooter) game where you shoot creepy and funny-looking enemies using a wide variety of weapons in your arsenal. The enemies will spawn in phases and almost every level introduces something new and exciting whether it's a new enemy, a boss, upgrades, or weapons. You have access to all kinds crazy guns, rifles, RPGs, grenade launchers, pistols, bazookas, snipers, shotguns, and even skins to customize them! Make sure to complete the achievements and challenges to earn some extra coins to help facilitate your progression. Don't forget to upgrade your skills such as health, coin magnet, and grenade impact. Play Funny Shooter 2 now and show us that you can defeat every boss in the game!</p>
+         <div style="margin-top: 2vw;">
+         </div>
+         <div style="margin-top: 2vw;">
+         </div>
+         <h1 class="abouttitle">Developer</h1>
+         <p class="aboutparagraph">GoGoMan</p>
+         <div style="margin-top: 2vw;">
+         </div>
+         <h1 class="abouttitle">Controls</h1>
+         <p class="aboutparagraph">WASD and Arrow Keys and Mouse and Click</p>
+         <div style="margin-top: 2vw;">
+         </div>
+         <h1 class="abouttitle">Platform</h1>
+         <p class="aboutparagraph">Web browser</p>
+         <div style="margin-top: 2vw;">
+         </div>
+         <h1 class="abouttitle">Last Updated</h1>
+         <p class="aboutparagraph">May 31, 2023</p>
+      </div>
+      <center>
+      <div class="recommendedgames">
+         <h1 class="recommendedtext">Recommended Games</h1>
+            <a href="/games/kiwi-clicker/">
+            <img src="/game-assets/images/kiwi-clicker.png" class="recommendedgameicon">
+            </a>
+            <a href="/games/gunspin/">
+            <img src="/game-assets/images/gunspin.png" class="recommendedgameicon">
+            </a>
+            <a href="/games/dogeminer/">
+            <img src="/game-assets/images/dogeminer.png" class="recommendedgameicon">
+            </a>
+            <a href="/games/1-on-1-soccer/">
+            <img src="/game-assets/images/1-on-1-soccer.png" class="recommendedgameicon">
+            </a>
+         </center>
+      </div>
+      </div>
+      <div class="footer">
+         <div class="socials">
+            <center>
+               <a href="https://discord.gg/Dzjzv7mtbd">
+               <img src="/game-assets/site-images/discord.png" class="socialsbutton">
+               </a>
+               <a href="https://www.tiktok.com/@tgc.games">
+               <img src="/game-assets/site-images/tiktok.png" class="socialsbutton">
+               </a>
+               <a href="https://www.youtube.com/@tgcofficialgames">
+               <img src="/game-assets/site-images/youtube.png" class="socialsbutton">
+               </a>
+         </div>
+         <h1 class="footertext">© 2022-2023 Tgcofficial</h1>
+         </center>
+         <button onclick="backtogame()" id="backtogame"><i class="fa-solid fa-arrow-up fa-xs" style="color: #ffffff;"></i> Back To Game</button>
+         <script src="/js/backtotop.js"></script>
+      </div>
+   </body>
 </html>
