@@ -1,2548 +1,301 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Saturn" />
-    <meta content="The Game Collection" property="og:title" />
-    <meta content="Best HTML game site!" property="og:description" />
-    <meta name="theme-color" content="#858385">
-    <meta property="og:image" content="/icons.png">
-    <title>The Game Collection | Games</title>
-    <link rel="icon" type="image/png" href="/icons.png" />
-    <script src="/js/fontawesome.js"></script>
-    <link rel="stylesheet" href="/game-assets/scripts/games.css" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4536794942189475" crossorigin="anonymous"></script>
-  </head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CB3H5R2GXY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+    <head>
+        <title>HTML5 Tetris</title>
+        <meta charset="UTF-8">
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'G-CB3H5R2GXY');
-  </script>
-  <body>
-    <div class="tgcnavbar">
-      <div class="navbuttons">
-        <img class="navlogo" src="/game-assets/site-images/NavLogo.png" alt="">
-        <div id="clock"></div>
-        <script src="/js/clock.js"></script>
-        <a href="/">
-          <div class="navbutton" current>
-            <i class="fa-solid fa-house fa-xs" style="color: #ffffff;"></i> Home
-          </div>
-        </a>
-        <a href="/games">
-          <div class="navbutton">
-            <i class="fa-solid fa-gamepad-modern fa-xs" style="color: #ffffff;"></i> Games
-          </div>
-        </a>
-        <a href="/events">
-          <div class="navbutton">
-            <i class="fa-solid fa-calendar-days fa-xs" style="color: #ffffff;"></i> Events
-          </div>
-        </a>
-        <a href="/leaderboards">
-          <div class="navbutton">
-            <i class="fa-solid fa-signal fa-xs" style="color: #ffffff;"></i> Leaderboards
-          </div>
-        </a>
-        <a href="/extra">
-          <div class="navbutton">
-            <i class="fa-solid fa-fire fa-xs" style="color: #ffffff;"></i> Extra
-          </div>
-        </a>
-        <a href="/settings">
-          <div class="navbutton">
-            <i class="fa-solid fa-gear fa-xs" style="color: #ffffff;"></i> Settings
-          </div>
-        </a>
-        <a href="/credits">
-          <div class="navbutton">
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> Credits
-          </div>
-        </a>
-      </div>
-    </div>
-    </div>
-    <h1 class="title">All Games</h1>
-    <center>
-      <button onclick="window.location.href='/flash-games';" class="gamechoice">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1.5vw" height="1.5vw" viewBox="0 0 1.5vw 1.5vw">
-          <image id="flash" width="1.5vw" height="1.5vw" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAACXBIWXMAAAsTAAALEwEAmpwYAAARUklEQVR4nO3deZBeVZ3G8e/bnTTdnZUOCYlBwIAQJjAjiIoYRQE1KgimalAHXEAGsIICIi7goGwl5TAaZMARtVwQ2dwYLbYBB5RVZABRAUVRlkCStrPQkKWTfueP39tF0vTyLvfe37nnPJ+qru6wpJ9Anpy7nKVSrVYRkcy0Dfs8XBUYrH0uzIQiv5lIJNpqHx1AZ+1zB9AFTAGuqn0eyaXAV4EBYFXuSWtUdJGxVYBpwAygB+gGXgccV/t7bbXPQx/twMvG+Pk+DjwPXIGKLuKiE5iKFfZ0YCFW5AnAxNpHW+2f6Wnye0wBZmJXAIVR0SV122Kj9VnAjrxYwD2x0TsPm9A9ukiutsPukYdG6cnYSL6w4BwqukjGZgALgA9jl9yHuaZxoKJLrKYA+2KlngXMwx6iJUlFl9i8CTgQG8X3w8qePBVdYtCN3WMvAI4C9vGNEx4VXcqqDXu/vRDYAzgeuzyXEajoUjbtwHTg9dgI/gnsHlzGoKJLWbRj9917A3sBn8NGdKmDii6hG5qJ9g9Yyc/H3n1LA1R0CVkndt99AHAB+c1Ui56KLqHaAbsP/w72+7TQueGxUdElNFOB3YBFwKloFM+Eii4hmQO8B/gsdh8+3TVNRFR0CUEHcAjweexV2WzfOPFR0cXbDOBIbEOGXZyzREtFF0+LsZ1a9gTmOmeJmoouHjqAI7BJL7s7Z0mCii5Fmw38MzZ1dWffKOlQ0aVIu2D34ydi+6ZJQVR0Kcpi4G3YaN7sxorSJBVd8taBFfxCbLabOFDRJU/TgIOAr6GlpK5UdMlDBbs8Pwi4BHtXLo5UdMlaBZvK+hZgKSp5EEY7CE6kWXOw6axLsT3UJQAqumRpDrbq7Bw0kgdFl+6SlR7gHcC56MFbcFR0ycJM4J3A2dioLoHRpbu0asuSa2FKoFR0acW2wNuBf8NOIpVAqejSrC7gjdhuMFpHHjgVXZoxATsh5XRsG2YJnIoujaoA+wNnkPDppGWjokujXoWV/ADnHNIAFV0asQfwGWw1mpSIii71mgIcg20BJSWjoks9uoCDsZNTpIRUdBlPG/BP2G6tb3DOIk1S0WU8OwInYYtVpKRUdBlLF/BpdF9eeiq6jOU84Gj0+6T09D9QRrMLNuttG+8g0joVXUbSDZyGHr5FQ0WXkZwJvB87ulgioKLLcPOxmW9TvYNEbBK2ZqAw2mFGttQNfAyY5x0kEjcBy2tfbwY2AeuBG4G1RQZR0WVIG3AydjbaNN8opXEtsBHYAPQD67AyD9Y+X8WLRR/6axtq/06hI3qlWq0W+f0kXLsCNwM7eQcJVD/wS2xEfh54AvgW8AJW8EJH6EZpRBewiTEfQQ/fhlsB/B4r8t3AN4E1WLlLRUWXCvBeYAm2Qi11K4FlWJl/BHwX6HVNlAFduqdt6PikB9GpKr3AKuDbwE+wS/PSjdyj0YietknA4d4hnK3B7rn/HbgOeLr246hoRE/X0PLTW7Btm1OzDnv6fTZW8KhG8OE0oqdre+zE00Jf8wRiADgfuB74E7DaNU0BNKKnqQ3bk/0a7N48pbIPAh/GnqI/jr3bjp6KnqY5wD3Ay72DFGgAuw+/DbgTu0wfdE1UIF26p6cL2JO0TjzdiJ0o8zMSGsW3pBE9PbOAX2Ez4VJY1PQC8FHsgVsfCY3iW9KInpYe4MfAbt5BCvIcNhHoamyOebJU9LTMI53NJHqBE7GSJ3/ZmsKlm5ip2L15CpZjO9dehUoOqOipqGAlP9Y7SAGWAZ8CfuAdJCQqehomA/sS/2X7MmwbrO95BwmNih6/CnY44iHeQXL2LHAOtkZchlHR4zcFG8nf6h0kR73YZJj/8g4SKhU9bm3A7sCbnXPkaTVwIXCRc46gqehxm45dsr/bOUde1gEXY0UfcM4SNBU9bm/GHk7FaBNwJXA5tp+bjEFFj1cndhJqrH6GPXh7DL0rH5eKHqc2bBZczBNkfgPcjy7Z66Kix2ki8HbsWKUYfRX4PhHvCJM1FT1Os7Cjlbq9g+Tgv4ErsL3dpE4qepwWAYu9Q+TkRmzX2s3eQcpERY9PD7CAOLdvvgz4H+y1mjRARY/PO4BDvUPk4Fbs3vzPzjlKSUWPSzewH3GehnoZ8AcS3SGmVSp6XBYBB3iHyMEvgLvQU/amqejxqAAHA3t5B8nBOdj+69IkFT0e+2MP4WLza+BREty5NUvaMy4O7cAxwJu8g2RoENua+UPAM85ZSk8jehxmYXvCxWQAOxdtuXeQGKjocdgb2Nk7RIaq2Dnld2NHGUuLVPTy6wQ+gO0JF4s1wKnYpbtkQEUvv/nYWWoxGQDuQyvTMqOil9/HiWt315XAKdhmj5IRFb3ctsNG85jenrRhZ8NpckyGYvoNkqIzgYXeITK0AnvS/gzaNSZTGtHLqwO7P5/sHSRDVeCn6N48cyp6ec3GzjqPxUpsN1e9N8+Bil5O7cDHsBNYYtGPbfaoqa45UNHLaRK2gGWGd5CM9AE/xO7RJQcqejkdDcz0DpGh5cAl3iFipqKXTwdwAjDXO0hGngNux05ClZyo6OWzA3E9lX4EWApsdM4RNb1HL5cKtl97TBs/9mPvzSdgA08V+3UyytdD79dH+3pLFbb+OcZTxZbHRrfDrIpeLlOB04hrbvt04CCsjBOwog1daY709dCecUN/KMBLiz5U7sqwn2M8g8B64F4iu5VQ0ctlX+ofncpib+Aa7xDDHA9c6h0iS7pHL4924OvEte48VNFduqvo5bEd8Y3mUhAVvTxegb1aE2mYil4OU4GLsfntIg1T0cthLnZvroen0hQVPXwd2GW71mdL01T08E3B3p3Htp2zFEhFD99M7BSWid5BpLxU9LB1A6ejy3ZpkR7uhG0Stme7SEs0ooerE1uOGtNKNXGiET1cPdiOqCIt04gepgq2TZTuzSUTKnqYOoHXeIeQeOjSPUw7YDuiimRCI3p42oEdvUNIXFT08HShokvGVPTwzAO+4h1C4qKih6UdW6k2zTuIxEVFD0sXtlJNJFMqeljmA6d4h5D4qOjhaMdeq+3qHUTio6KHYw/shFSRzKno4ZgPHOgdQuKkooehg7iOWZLAqOhh2BVY5B1C4qWi+6sAbwAO8w4i8VLR/U0hrkMTJUAqur+dgAXeISRuKrqvCvak/QjvIBI3Fd3XDGwRi0iuVHRfh2JncYvkSkX3U8EOTdzGO4jET0X38y/Ayd4hJA0qup9XArO8Q0gaVHQfHdj7c5FCqOg+3gMc4h1C0qGiF68dOADYzTuIpENFL94MdNa5FExFL95BwKu8Q0haVPRidQKL0dx2KZiKXqyFaJfXMqh4B8iail6cCnAs8GrvIDKu6E6xVdGLMx9tF1UWg94BsqaiF+cs7EGcSOFU9GJMA7q9Q0jdoutFdL+gQM3D3p9LOUTXi+h+QQHqAj4L7O0dROryU+AO7xBZm+AdIAGzsH3hYll3/hhwBtCH/f4p46uoKqPnXgb8tbgoxVDR89UGfA47bikWG4GrvUNIY3Tpnq8e4HXEsyT1SeAi7xDSOBU9X58C5nqHyNAqNJqXkoqeny5s3XmPd5CM9ALXAWu9g0jjVPT8nIK9P4/FH4FvAJu8g0jjVPR8TAJOBGZ6B8nQBuAp7xDSHBU9H7GdvLIauA974i4lVKlWo1uo420y8ASwrXeQDN2AbU+9yjuINEcjerYq2MKVmEa+DdgfXCp5iWnCTLZmAN8lrodwdwNf8w4hrdGInq19gM3eITL2NPCodwhpjYqenR7gMuK6NwfoB9Z5h5DWqOjZ6AT+EXutVsZFHqP5OfBl7xDSOhU9G3OAb2Oz4WKyEpsoIyWnh3Gt2wZbnbazc46s/RL7w0vvXyOgEb11uwFfIr5CPIA9cZcIaERvTQ/wGuI8kGE9MOAdQrKhEb01rwSWeIfIwV3Atd4hJDsqevN2xvaC28c5R9YeB5YCdzrnkAyp6M3pwo5XOsw7SA5uBm73DiHZUtGbswfwPu8QOfkrsNw7hGRLRW/cy7Ez1N7lHSQHTwIPEd803uSp6I3pAN4NfNQ7SE4uBm7yDiHZU9Hr1wbshd2bx2gtdtm+wTmH5EBFr99s4CjivTc/H9v8USKkotdnIvAB4GTnHHl6HHjOO4TkQ0Uf3wRgX2A/7yA5Og+4zTuE5EdFH98OwAeBRd5BcvQQeqUWNRV9bNOBE4AjsTXnMfpPbBbcoHcQyY+KPrpO7J78X4nn7LSR3IRtFyURU9FHt6T2EcuRSiP5HnA/Gs2jp6KPbAnwSWA77yA5uwo7D1wip6K/1DHYmeazvYPk7Frgd2g0T4JOatnakcAFxF9ygDcCdxDfzjgyAu0w86KjgAuJ+54crNi3YRNkVPJEaESHbmAxtqBjqnOWoiwAHkZFT0bKI3oFO0LpcOAi4n1PPtyDwLOo5ElJtejtwE7YbLf/II2SDwJ/w/5g6/ONIkVLregVrNT7AwcCn8ZKn4LngdOBFd5BpHgpFb0de5q+ELicdAoOdpneD9wHvOCcRRykUvTJwO7Y2eXnklbJAXqxqbxPeAcRH7EXfSJ2LtrB2GGBE2sfqWkDfoN2j0lWzEXfHjgU+AL2Cm2aaxo/q7A5Aiu9g4if2Io+EZvwcjhwUu3r7T0DOVuJXcncjqa6Ji2Wok/CHrS9Fyv5XOBlnoECsRm4GnviLgkrc9E7sHIfjT1J78ZONo19xVm91gJfxHZ21eSYxJWp6JOxd+AnALtgo/hU4PWkM3W1Xn3AZdhrRF2yS1BFb8eKPPTRXft4H7bDyxRsFD8CLa8dTy9wKbDaOYcEwqPo7wReW/u6DSt4O/YgrRM7wLALG7EnEvemjHlYA1wJPIJGc6nxKPr7sdc9kr21wDXAV1DJZQsel8AbHb5nKh7GltvqIAbZiseIrifA+ejH3pc/4JxDAqSHWnFYD1yBzeMXeQkVvfw2ATdgl+xrnLNIoDyKrkv3bN0LfAf4E/pvK6PQiF5+DwC3oHXmMgaPolccvmesrgSWYg/iREalS/fy+l/gEuAx7yASPo3o5XQn8E3ssl0TY2Rcukcvp18A16FLdqlTSItapD4/wd6Zr3bOISWiEb1cbsC2xvqDcw4pGRW9PG4HzgR+6x1EykdFL4d7saOc/887iJSTih6+R4EzgLuwPeBEGqaih+0vwGeAe9DyXmmBnrqH6yngVOBm9BpNWqQRPUzLsJH8NlRyyYBG9LBUgeXAacBN2CkrIi1T0cOyEjgZu1z/u28UiYku3cPRC3wCm97a55xFIqMRPQy9wPHYPXkfWuEnGVPR/T0DHIuVXGekSS5UdF9PAcdh9+QDzlkkYiq6jz7soIUbgeuds0gCVPTircB2bP0+NvNNJHcqerGexI5LugJ41jmLJERFL84jwJeAq9FDNymYip6/ZcDvga8DP3LOIolS0fP1F+Ai7FJ9uXMWSZiKno8VWLHPBn6OnY0m4kZFz96zwAXY4QpPO2cRAVT0LK3BNoc4DrgDzVeXgKjorduInWh6EraB499qPxYJhoremvXY9su/Ah7CNonQghQJjorevH7gXdjmjb1o40YJmIreuL8DR2EP3R7Czj7TKC5BU9Hr0wdcCvwReBjbZ10juJSGij625cDlwIPArdjacS0nldJR0Uf2KPBDrOB3YPfg2lddSktF39qd2J5t9wK3oMUnEgkV3cr9CLa18o9rPxaJSqpFvxW7HF8LfAN4AM1Hl4ilUvR7sMvw57B77bOwGWw6BUWSEGvRB7Byg73vPhd7Yr7CLZGII4+iVzL6edZi77c3Y8XeVPt6M3A/cCI2mUVPyyV5oRd9JVbcKlbawdqPB7FdVK/HLr97sdVj/WhBichLeBT9GayYWxZ+aAppha2nky7Bnoavq32sZetCa/KKSB0q1Wrh07QnAZ1sXfTB2ue22tebah9DS0BFpAX/D1mgtJ/tI+ztAAAAAElFTkSuQmCC"/>
-        </svg> Flash Games </button>
-      <button onclick="window.location.href='/gba-games';" class="gamechoice">
-        <i class="fa-solid fa-game-console-handheld fa-sm" style="color: #fafafa;"></i> GBA Games </button>
-      <button onclick="window.location.href='/fnf-mods';" class="gamechoice">
-        <i class="fa-solid fa-music fa-xs" style="color: #ffffff;"></i> FNF Mods </button>
-      <button onclick="window.location.href='/papas-games';" class="gamechoice">
-        <i class="fa-solid fa-burger-soda fa-xs" style="color: #ffffff;"></i> Papa's Games </button>
-      <button onclick="window.location.href='/subway-surfers-games';" class="gamechoice">
-        <i class="fa-solid fa-train-subway fa-xs" style="color: #ffffff;"></i> Subway Surfers Games </button>
-      <div class="seperate">
-        <a rel="noreferrer noopener" onclick="openLink();">
-          <button type="button" class="randomgamechoice">
-            <i class="fa-solid fa-dice fa-xs" style="color: #ffffff;"></i> Random Game </button>
-        </a>
-        <script src="/js/randomgame.js"></script>
-    </center>
-    <div id="games" style="display: grid; margin-bottom: 1.5vw;">
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/retrobowl.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Retro Bowl
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By New Star Games
-          </p>
-          <button onclick="window.location.href='/games/retro-bowl';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/subwaysurfersmumbai.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Subway Surfers
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By SYBO & Kiloo
-          </p>
-          <button onclick="window.location.href='/subway-surfers-games/subway-surfers-mumbai';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/golddiggerfrvr.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Gold Digger FRVR
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Chris Benjaminsen
-          </p>
-          <button onclick="window.location.href='/games/gold-digger-frvr';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/monkeymart.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Monkey Mart
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By TinyDobbins
-          </p>
-          <button onclick="window.location.href='/games/monkey-mart';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/football-legends.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Football Legends
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MadPuffers
-          </p>
-          <button onclick="window.location.href='/games/football-legends';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/recoil.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Recoil
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Martin Magni
-          </p>
-          <button onclick="window.location.href='/games/recoil';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/monster-tracks.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Monster Tracks
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Martin Magni
-          </p>
-          <button onclick="window.location.href='/games/monster-tracks';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/drive-mad.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Drive Mad
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Martin Magni
-          </p>
-          <button onclick="window.location.href='/games/drive-mad';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/rooftop-snipers.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Rooftop Snipers
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By New Eich Games
-          </p>
-          <button onclick="window.location.href='/games/rooftop-snipers';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/rooftop-snipers-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Rooftop Snipers 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By New Eich Games
-          </p>
-          <button onclick="window.location.href='/games/rooftop-snipers-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/president-simulator.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> President Simulator
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Emolingo Games
-          </p>
-          <button onclick="window.location.href='/games/president-simulator';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/basket-ball-stars.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Basketball Stars
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Madpuffers
-          </p>
-          <button onclick="window.location.href='/games/basketball-stars';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/basketball-legends-2020.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Basketball Legends 2020
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Madpuffers
-          </p>
-          <button onclick="window.location.href='/games/basketball-legends-2020';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/basket-bros.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Basket Bros
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Blue Wizard Digital
-          </p>
-          <button onclick="window.location.href='/games/basket-bros';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/bouncy-basketball.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Bouncy Basketball
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Dreamon Studios AB
-          </p>
-          <button onclick="window.location.href='/games/bouncy-basketball';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/stick-merge.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Stick Merge
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By TinyDobbins
-          </p>
-          <button onclick="window.location.href='/games/stick-merge';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/stick-merge-halloween.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Stick Merge Spooky
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By TinyDobbins
-          </p>
-          <button onclick="window.location.href='/games/stick-merge-halloween';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/stickmanhook.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Stickman Hook
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MadBox
-          </p>
-          <button onclick="window.location.href='/games/stickman-hook';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/sausage-flip.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Sausage Flip
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MadBox
-          </p>
-          <button onclick="window.location.href='/games/sausage-flip';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/burger-bounty.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Burger Bounty
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By OnRush Studio
-          </p>
-          <button onclick="window.location.href='/games/burger-bounty';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/plant-vs-zombies.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Plants vs. Zombies
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By PopCap Games
-          </p>
-          <button onclick="window.location.href='/games/plants-vs-zombies';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/getaway-shootout.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Getaway Shootout
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By New Eich Games
-          </p>
-          <button onclick="window.location.href='/games/getaway-shootout';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/tube-jumpers.jpg); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Tube Jumpers
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By New Eich Games
-          </p>
-          <button onclick="window.location.href='/games/tube-jumpers';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/bitlife.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> BitLife
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By CandyWriter LLC
-          </p>
-          <button onclick="window.location.href='/games/bitlife';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/swingo.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Swingo
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Blumgi
-          </p>
-          <button onclick="window.location.href='/games/swingo';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/blumgi-ball.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Blumgi Ball
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Blumgi
-          </p>
-          <button onclick="window.location.href='/games/blumgi-ball';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/blumgi-slime.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Blumgi Slime
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Blumgi
-          </p>
-          <button onclick="window.location.href='/games/blumgi-slime';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/blumgi-castle.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Blumgi Castle
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Blumgi
-          </p>
-          <button onclick="window.location.href='/games/blumgi-castle';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/blumgi-rocket.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Blumgi Rocket
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Blumgi
-          </p>
-          <button onclick="window.location.href='/games/blumgi-rocket';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/crazy-cars.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Crazy Cars
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By No Pressure Studios
-          </p>
-          <button onclick="window.location.href='/games/crazy-cars';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/roper.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Roper
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Martin Magni
-          </p>
-          <button onclick="window.location.href='/games/roper';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/idle-mining-empire.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Idle Mining Empire
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MarketJS
-          </p>
-          <button onclick="window.location.href='/games/idle-mining-empire';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/idle-startup-tycoon.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Idle Startup Tycoon
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MarketJS
-          </p>
-          <button onclick="window.location.href='/games/idle-startup-tycoon';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/idle-gang.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Idle Gang
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By NoPowerup
-          </p>
-          <button onclick="window.location.href='/games/idle-gang';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/dreadhead-parkour.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Dreadhead Parkour
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Gametornado
-          </p>
-          <button onclick="window.location.href='/games/dreadhead-parkour';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/poor-eddie.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Poor Eddie
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Gametornado
-          </p>
-          <button onclick="window.location.href='/games/poor-eddie';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/ball-mayhem.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Ball Mayhem
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Voodoo
-          </p>
-          <button onclick="window.location.href='/games/ball-mayhem';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/soccer-skills-world-cup.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Soccer Skills World Cup
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Radical Play
-          </p>
-          <button onclick="window.location.href='/games/soccer-skills-world-cup';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/soccer-skills-euro-cup.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Soccer Skills Euro Cup
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Radical Play
-          </p>
-          <button onclick="window.location.href='/games/soccer-skills-euro-cup';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/soccer-random.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Soccer Random
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By RHM Interactive
-          </p>
-          <button onclick="window.location.href='/games/soccer-random';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/basket-random.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Basket Random
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By RHM Interactive
-          </p>
-          <button onclick="window.location.href='/games/basket-random';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/boxing-random.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Boxing Random
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By RHM Interactive
-          </p>
-          <button onclick="window.location.href='/games/boxing-random';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/volley-random.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Volley Random
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By RHM Interactive
-          </p>
-          <button onclick="window.location.href='/games/volley-random';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/boxing-physics-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Boxing Physics 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Cool Bears LLC
-          </p>
-          <button onclick="window.location.href='/games/boxing-physics-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/slope.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Slope
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Rob Kay
-          </p>
-          <button onclick="window.location.href='/games/slope';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/slope-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Slope 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Rob Kay
-          </p>
-          <button onclick="window.location.href='/games/slope-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/slope-3.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Slope 3
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Rob Kay
-          </p>
-          <button onclick="window.location.href='/games/slope-3';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/sprinter.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Sprinter
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Gamedesign
-          </p>
-          <button onclick="window.location.href='/games/sprinter';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/table-tennis-world-tour.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Table Tennis World Tour
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Happylander
-          </p>
-          <button onclick="window.location.href='/games/table-tennis-world-tour';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cow-bay.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cow Bay
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By 7Spot Games
-          </p>
-          <button onclick="window.location.href='/games/cow-bay';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/jumping-shell.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Jumping Shell
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Robert Alvarez
-          </p>
-          <button onclick="window.location.href='/games/jumping-shell';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/death-run-3d.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Death Run 3D
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Dragon King
-          </p>
-          <button onclick="window.location.href='/games/death-run-3d';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/super-mario-64.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Super Mario 64
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Nintendo
-          </p>
-          <button onclick="window.location.href='/games/super-mario-64';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/space-thing.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Space Thing
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Brad Erkkila
-          </p>
-          <button onclick="window.location.href='/games/space-thing';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/unicycle-hero.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Unicycle Hero
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Unept
-          </p>
-          <button onclick="window.location.href='/games/unicycle-hero   ';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/time-shooter-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Time Shooter 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GoGoMan
-          </p>
-          <button onclick="window.location.href='/games/time-shooter-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/time-shooter-3-swat.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Time Shooter 3 :SWAT
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GoGoMan
-          </p>
-          <button onclick="window.location.href='/games/time-shooter-3-swat';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/horde-killer-you-vs-100.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Horde Killer: You Vs 100
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GoGoMan
-          </p>
-          <button onclick="window.location.href='/games/horde-killer-you-vs-100';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/funny-shooter.jpeg); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Funny Shooter
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GoGoMan
-          </p>
-          <button onclick="window.location.href='/games/funny-shooter';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/funny-shooter-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Funny Shooter 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GoGoMan
-          </p>
-          <button onclick="window.location.href='/games/funny-shooter-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/funny-battle-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Funny Battle 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GoGoMan
-          </p>
-          <button onclick="window.location.href='/games/funny-battle-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/sniper-shot.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Sniper Shot
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GoGoMan
-          </p>
-          <button onclick="window.location.href='/games/sniper-shot';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/bank-robbery.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Bank Robbery
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GoGoMan
-          </p>
-          <button onclick="window.location.href='/games/bank-robbery';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/bank-robbery-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Bank Robbery 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GoGoMan
-          </p>
-          <button onclick="window.location.href='/games/bank-robbery-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/body-drop-3d.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Body Drop 3D
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By JustPlay
-          </p>
-          <button onclick="window.location.href='/games/body-drop-3d';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/super-hot.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Super Hot
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By SUPERHOT Team
-          </p>
-          <button onclick="window.location.href='/games/super-hot';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/a-dark-room.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> A Dark Room
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Doublespeak Games
-          </p>
-          <button onclick="window.location.href='/games/a-dark-room';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/five-nights-at-freddys.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Five Nights At Freddy's
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Scott Cawthon
-          </p>
-          <button onclick="window.location.href='/games/five-nights-at-freddys';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/five-nights-at-winstons.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Five Nights At Winston's
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Calder
-          </p>
-          <button onclick="window.location.href='/games/five-nights-at-winstons';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/santy-is-home.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Santy Is Home
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Kulu
-          </p>
-          <button onclick="window.location.href='/games/santy-is-home';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/granny.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Granny
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By DVloper
-          </p>
-          <button onclick="window.location.href='/games/granny';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/tetris.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Tetris
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Alexey Pajitnov
-          </p>
-          <button onclick="window.location.href='/games/tetris';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/kiwi-clicker.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Kiwi Clicker
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Tobspr
-          </p>
-          <button onclick="window.location.href='/games/kiwi-clicker';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/tube-clicker.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Tube Clicker
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Cangrejo Ideas
-          </p>
-          <button onclick="window.location.href='/games/tube-clicker';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/poor-bunny.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Poor Bunny
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Adventure Islands
-          </p>
-          <button onclick="window.location.href='/games/poor-bunny';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/push-your-luck.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Push Your Luck
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Bruno Faidutti
-          </p>
-          <button onclick="window.location.href='/games/push-your-luck';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/merge-tycoon.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Merge Tycoon
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Zonda Creative Studio
-          </p>
-          <button onclick="window.location.href='/games/merge-tycoon';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/chicken-merge.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Chicken Merge
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Beedo Games
-          </p>
-          <button onclick="window.location.href='/games/chicken-merge';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/idle-shark.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Idle Shark
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Cirrial
-          </p>
-          <button onclick="window.location.href='/games/idle-shark';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/idle-breakout.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Idle Breakout
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Kodiqi
-          </p>
-          <button onclick="window.location.href='/games/idle-breakout';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/burrito-bison.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Burrito Bison
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Juicy Beast
-          </p>
-          <button onclick="window.location.href='/games/burrito-bison';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/dune.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Dune
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Voodoo
-          </p>
-          <button onclick="window.location.href='/games/dune';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/gunspin.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Gunspin
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MiniJuegos
-          </p>
-          <button onclick="window.location.href='/games/gunspin';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/run-3.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Run 3
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Joseph Cloutier
-          </p>
-          <button onclick="window.location.href='/games/run-3';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/drift-boss.jpg); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Drift Boss
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MarketJS
-          </p>
-          <button onclick="window.location.href='/games/drift-boss';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/galactic-empire.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Galactic Empire
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Jeff Ramos
-          </p>
-          <button onclick="window.location.href='/games/galactic-empire';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/tag.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Tag
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By JetGames
-          </p>
-          <button onclick="window.location.href='/games/tag';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/vex-3.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Vex 3
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Amazing Adam
-          </p>
-          <button onclick="window.location.href='/games/vex-3';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/vex-4.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Vex 4
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Amazing Adam
-          </p>
-          <button onclick="window.location.href='/games/vex-4';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/vex-5.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Vex 5
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Amazing Adam
-          </p>
-          <button onclick="window.location.href='/games/vex-5';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/vex-6.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Vex 6
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Amazing Adam
-          </p>
-          <button onclick="window.location.href='/games/vex-6';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/vex-7.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Vex 7
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Agame
-          </p>
-          <button onclick="window.location.href='/games/vex-7';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/tiny-fishing.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Tiny Fishing
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Mad Buffer
-          </p>
-          <button onclick="window.location.href='/games/tiny-fishing';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/idle-ants.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Idle Ants
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Madbox
-          </p>
-          <button onclick="window.location.href='/games/idle-ants';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/idle-ants-halloween.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Idle Ants Halloween
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Madbox
-          </p>
-          <button onclick="window.location.href='/games/idle-ants-halloween';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/idle-gun.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Idle Gun
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Neko
-          </p>
-          <button onclick="window.location.href='/games/idle-gun';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/parkour-race.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Parkour Race
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Madbox
-          </p>
-          <button onclick="window.location.href='/games/parkour-race';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/gladihoppers.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Gladihoppers
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Dreamon Studios AB
-          </p>
-          <button onclick="window.location.href='/games/gladihoppers'" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/lands-of-blight.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Lands Of Blight
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By 7Spot Games
-          </p>
-          <button onclick="window.location.href='/games/lands-of-blight'" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/backrooms.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Backrooms
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Pie On A Plate Productions
-          </p>
-          <button onclick="window.location.href='/games/backrooms'" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/tanuki-sunset.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Tanuki Sunset
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Rewind Games
-          </p>
-          <button onclick="window.location.href='/games/tanuki-sunset';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/fruit-ninja.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Fruit Ninja
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Halfbrick Studios
-          </p>
-          <button onclick="window.location.href='/games/fruit-ninja';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/merge-round-racers.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Merge Round Racers
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By TinyDobbins
-          </p>
-          <button onclick="window.location.href='/games/merge-round-racers';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/papery-planes.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Papery Planes
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Discovery Learning
-          </p>
-          <button onclick="window.location.href='/games/papery-planes';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/fnf.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> FNF Full Week
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Ninjamuffin99
-          </p>
-          <button onclick="window.location.href='/games/fnf-full-week';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cannon-basketball-4.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cannon Basketball 4
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Qzix13
-          </p>
-          <button onclick="window.location.href='/games/cannon-basketball-4';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cannon-basketball-3.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cannon Basketball 3
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Qzix13
-          </p>
-          <button onclick="window.location.href='/games/cannon-basketball-3';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/getting-over-it.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Getting Over It
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Griffpatch
-          </p>
-          <button onclick="window.location.href='/games/getting-over-it';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/googlefeud.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Google Feud
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Justin Hook
-          </p>
-          <button onclick="window.location.href='/games/google-feud';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/earn-to-die.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Earn To Die
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Toffee Games
-          </p>
-          <button onclick="window.location.href='/games/earn-to-die';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/snow-rider-3d.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Snow Rider 3D
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By New Gamer
-          </p>
-          <button onclick="window.location.href='/games/snow-rider-3d';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/crossy-road.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Crossy Road
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Hipster Whale
-          </p>
-          <button onclick="window.location.href='/games/crossy-road';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/crossy-road-space.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Crossy Road Space
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Hipster Whale
-          </p>
-          <button onclick="window.location.href='/games/crossy-road-space';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/murder.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Murder
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Studio Seufz
-          </p>
-          <button onclick="window.location.href='/games/murder';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/head-soccer-2022.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Head Soccer 2022
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By D&D Dream
-          </p>
-          <button onclick="window.location.href='/games/head-soccer-2022';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/portal.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Portal
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By We Create Stuff
-          </p>
-          <button onclick="window.location.href='/games/portal';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/creative-kill-chamber.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Creative Kill Chamber
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By ESP Animation
-          </p>
-          <button onclick="window.location.href='/games/creative-kill-chamber';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/sift-heads.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Sift Heads
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Pyrozen
-          </p>
-          <button onclick="window.location.href='/games/sift-heads';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/sift-heads-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Sift Heads 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Pyrozen
-          </p>
-          <button onclick="window.location.href='/games/sift-heads-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/sift-heads-3.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Sift Heads 3
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Pyrozen
-          </p>
-          <button onclick="window.location.href='/games/sift-heads-3';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/sift-heads-4.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Sift Heads 4
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Pyrozen
-          </p>
-          <button onclick="window.location.href='/games/sift-heads-4';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/sift-heads-5.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Sift Heads 5
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Pyrozen
-          </p>
-          <button onclick="window.location.href='/games/sift-heads-5';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/core-ball.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Core Ball
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Burning Games and Big Child Creatives
-          </p>
-          <button onclick="window.location.href='/games/core-ball';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/frying-nemo.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Frying Nemo
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Ytkimirti
-          </p>
-          <button onclick="window.location.href='/games/frying-nemo';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/george-and-the-printer.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> George And The Printer
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Eloïse Zirotti and Robin Six
-          </p>
-          <button onclick="window.location.href='/games/george-and-the-printer';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/deal-or-no-deal.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Deal Or No Deal
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By John de Mol
-          </p>
-          <button onclick="window.location.href='/games/deal-or-no-deal';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cluster-rush.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cluster Rush
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By TinyBuild
-          </p>
-          <button onclick="window.location.href='/games/cluster-rush';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/sling-drift.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Sling Drift
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By TastyPill LLC
-          </p>
-          <button onclick="window.location.href='/games/sling-drift';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/moto-x3m.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Moto X3M
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MadPuffers
-          </p>
-          <button onclick="window.location.href='/games/moto-x3m';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/moto-x3m-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Moto X3M 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MadPuffers
-          </p>
-          <button onclick="window.location.href='/games/moto-x3m-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/moto-x3m-3.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Moto X3M 3
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MadPuffers
-          </p>
-          <button onclick="window.location.href='/games/moto-x3m-3';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/moto-x3m-pool-party.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Moto X3M Pool Party
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MadPuffers
-          </p>
-          <button onclick="window.location.href='/games/moto-x3m-pool-party';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/moto-x3m-spooky-land.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Moto X3M Spooky Land
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MadPuffers
-          </p>
-          <button onclick="window.location.href='/games/moto-x3m-spooky-land';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/moto-x3m-winter.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Moto X3M Winter
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By MadPuffers
-          </p>
-          <button onclick="window.location.href='/games/moto-x3m-winter';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/bacon-may-die.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Bacon May Die
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By SnoutUp Games
-          </p>
-          <button onclick="window.location.href='/games/bacon-may-die';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/bacon-may-die-halloween.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Bacon May Die Halloween
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By SnoutUp Games
-          </p>
-          <button onclick="window.location.href='/games/bacon-may-die-halloween';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/day-of-meat-radiation.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Day of Meat Radiation
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Lampogolovii
-          </p>
-          <button onclick="window.location.href='/games/day-of-meat-radiation';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/adventure-capitalist.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> AdVenture Capitalist
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Hyper Hippo Entertainment
-          </p>
-          <button onclick="window.location.href='/games/adventure-capitalist';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/bob-the-robber-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Bob The Robber 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By .MeowBeast Flazm.com
-          </p>
-          <button onclick="window.location.href='/games/bob-the-robber-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/bob-the-robber-4.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Bob The Robber 4
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By .MeowBeast Flazm.com
-          </p>
-          <button onclick="window.location.href='/games/bob-the-robber-4';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/bob-the-robber-5.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Bob The Robber 5
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By .MeowBeast Flazm.com
-          </p>
-          <button onclick="window.location.href='/games/bob-the-robber-5';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/jetpack-joyride.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Jetpack Joyride
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Halfbrick Studios
-          </p>
-          <button onclick="window.location.href='/games/jetpack-joyride';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/turbo-moto-racer.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Turbo Moto Racer
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Staple Technologies
-          </p>
-          <button onclick="window.location.href='/games/turbo-moto-racer';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/doodle-jump.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Doodle Jump
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Lima Sky
-          </p>
-          <button onclick="window.location.href='/games/doodle-jump';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/stack.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Stack
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Double Fine
-          </p>
-          <button onclick="window.location.href='/games/stack';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/computer-bashing.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Computer Bashing
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Javi Hernández Hernández
-          </p>
-          <button onclick="window.location.href='/games/computer-bashing';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/slime-rush-td.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Slime Rush TD
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Kizi
-          </p>
-          <button onclick="window.location.href='/games/slime-rush-td';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/google-snake.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Google Snake
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Google
-          </p>
-          <button onclick="window.location.href='/games/google-snake';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/tunnel-rush.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Tunnel Rush
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Deer Cat Games
-          </p>
-          <button onclick="window.location.href='/games/tunnel-rush';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/tunnel-rush-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Tunnel Rush 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Deer Cat Games
-          </p>
-          <button onclick="window.location.href='/games/tunnel-rush-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/defend-the-tank.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Defend The Tank
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By LittleGames
-          </p>
-          <button onclick="window.location.href='/games/defend-the-tank';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cell-machine.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cell Machine
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Sam Hogan
-          </p>
-          <button onclick="window.location.href='/games/cell-machine';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/super-smash-flash.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Super Smash Flash
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By McLeodGaming
-          </p>
-          <button onclick="window.location.href='/games/super-smash-flash';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/evil-glitch.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Evil Glitch
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Agar3s
-          </p>
-          <button onclick="window.location.href='/games/evil-glitch';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/little-alchemy-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Little Alchemy 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Jakub Koziol
-          </p>
-          <button onclick="window.location.href='/games/little-alchemy-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/rabbit-samurai.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Rabbit Samurai
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By IP Eliseenko Maksim Andreevich
-          </p>
-          <button onclick="window.location.href='/games/rabbit-samurai';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/rabbit-samurai-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Rabbit Samurai 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By IP Eliseenko Maksim Andreevich
-          </p>
-          <button onclick="window.location.href='/games/rabbit-samurai-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/apple-knight-mini-dungeons.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Apple Knight Mini Dungeons
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Limitless LLC
-          </p>
-          <button onclick="window.location.href='/games/apple-knight-mini-dungeons';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/1-on-1-soccer.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> 1 On 1 Soccer
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Adam Wardle
-          </p>
-          <button onclick="window.location.href='/games/1-on-1-soccer';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/edge-lets-surf.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Edge Let's Surf
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Microsoft
-          </p>
-          <button onclick="window.location.href='/games/edge-lets-surf';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cut-the-rope-time-travel.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cut The Rope Time Travel
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By ZeptoLab
-          </p>
-          <button onclick="window.location.href='/games/cut-the-rope-time-travel';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cut-the-rope-holiday-gift.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cut The Rope Holiday Gift
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By ZeptoLab
-          </p>
-          <button onclick="window.location.href='/games/cut-the-rope-holiday-gift';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cut-the-rope.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cut The Rope
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By ZeptoLab
-          </p>
-          <button onclick="window.location.href='/games/cut-the-rope';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/csgo-clicker.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> CS:GO Clicker
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By GOECORUSH Media, s. r. o.
-          </p>
-          <button onclick="window.location.href='/games/csgo-clicker';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/we-become-what-we-behold.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> We Become What We Behold
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Mismatch Studio
-          </p>
-          <button onclick="window.location.href='/games/we-become-what-we-behold';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/tactical-weapon-pack-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Tactical Weapon Pack 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Wilkin Games
-          </p>
-          <button onclick="window.location.href='/games/tactical-weapon-pack-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/push-the-square.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Push The Square
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Raul Moreno Tamayo
-          </p>
-          <button onclick="window.location.href='/games/push-the-square';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/geometry-dash.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Geometry Dash
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By RobTop Games
-          </p>
-          <button onclick="window.location.href='/games/geometry-dash';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cover-orange-wild-west.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cover Orange Wild West
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Johnny-K
-          </p>
-          <button onclick="window.location.href='/games/cover-orange-wild-west';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/cover-orange-gangsters.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Cover Orange Gangsters
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Johnny-K
-          </p>
-          <button onclick="window.location.href='/games/cover-orange-gangsters';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/dogeminer.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Dogeminer
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By rkn
-          </p>
-          <button onclick="window.location.href='/games/dogeminer'" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/temple-run-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Temple Run 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Imangi Studios
-          </p>
-          <button onclick="window.location.href='/games/temple-run-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/google-baseball.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Google Baseball
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Google
-          </p>
-          <button onclick="window.location.href='/games/google-baseball';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/2048.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> 2048
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Gabriele Cirulli
-          </p>
-          <button onclick="window.location.href='/games/2048';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/rolly-vortex.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Rolly Vortex
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Voodoo
-          </p>
-          <button onclick="window.location.href='/games/rolly-vortex';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/flappy-bird.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Flappy Bird
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Dong Nguyen
-          </p>
-          <button onclick="window.location.href='/games/flappy-bird';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/duck-life.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Duck Life
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Wix Games
-          </p>
-          <button onclick="window.location.href='/games/duck-life';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/duck-life-2.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Duck Life 2
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Wix Games
-          </p>
-          <button onclick="window.location.href='/games/duck-life-2';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/duck-life-3-evolution.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Duck Life 3: Evolution
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Wix Games
-          </p>
-          <button onclick="window.location.href='/games/duck-life-3-evolution';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/duck-life-4.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Duck Life 4
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Wix Games
-          </p>
-          <button onclick="window.location.href='/games/duck-life-4';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/alien-hominid.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Alien Hominid
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By The Behemoth
-          </p>
-          <button onclick="window.location.href='/games/alien-hominid';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/fireboy-and-watergirl-1.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Fireboy & Watergirl 1
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Oslo Albet
-          </p>
-          <button onclick="window.location.href='/games/fireboy-watergirl-1';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/google-kitsune.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Google Kitsune
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Google
-          </p>
-          <button onclick="window.location.href='/games/google-kitsune';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/swerve.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Swerve
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By PlayCanvas
-          </p>
-          <button onclick="window.location.href='/games/swerve';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/rubiks-cube.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Rubik's Cube
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Google
-          </p>
-          <button onclick="window.location.href='/games/rubiks-cube';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/duck-hunt.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> Duck Hunt
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Nintendo
-          </p>
-          <button onclick="window.location.href='/games/duck-hunt';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-      <div class="game">
-        <div class="gameicon" style="background-image: url(/game-assets/images/t-rex-game.png); background-size: cover; background-position: center center;"></div>
-        <div id="game-content" class="game-content">
-          <h1>
-            <i class="fa-solid fa-gamepad fa-sm" style="color: #ffffff;"></i> T-Rex Game
-          </h1>
-          <p>
-            <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i> By Google
-          </p>
-          <button onclick="window.location.href='/games/t-rex-game';" class="install">Play Now! <i class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-    <button onclick="backtogame()" id="backtogame">
-      <i class="fa-solid fa-arrow-up fa-xs" style="color: #ffffff;"></i> Back To Top </button>
-    <script src="/js/backtotop.js"></script>
-    </div>
-    <div class="footer">
-      <div class="socials">
-        <center>
-          <a href="https://discord.gg/Dzjzv7mtbd">
-            <img src="/game-assets/site-images/discord.png" class="socialsbutton">
-          </a>
-          <a href="https://www.tiktok.com/@tgc.games">
-            <img src="/game-assets/site-images/tiktok.png" class="socialsbutton">
-          </a>
-          <a href="https://www.youtube.com/@tgcofficialgames">
-            <img src="/game-assets/site-images/youtube.png" class="socialsbutton">
-          </a>
-      </div>
-      <h1 class="footertext">© 2022-2023 Tgcofficial</h1>
-    </div>
-    </center>
-  </body>
+        <link href='http://fonts.googleapis.com/css?family=Lemon|Gochi+Hand' rel='stylesheet' type='text/css'>
+
+        <link id="fav" rel="shortcut icon" type="image/png" href="http://www.xarg.org/favicon.ico" />
+        {literal}
+        <style>
+
+            a {
+                color: #000;
+                text-decoration: none;
+                font-family:Arial;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            html{
+                overflow:hidden;
+            }
+
+            body {
+                background: #def;
+            }
+
+            #OfCourseItsMe {
+                font-family:Arial;
+                font-size: 11px;
+                text-decoration:none;
+                color: #78a;
+            }
+
+            #OfCourseItsMe a {
+                font-weight: bold;
+            }
+
+            #canvas {
+                border: 10px solid #78a;
+                background: #becfea;
+                position:absolute;
+                z-index:0;
+                left: 70px;
+            }
+
+            #preview {
+                position: absolute;
+                left: 550px;
+                border: 10px solid #78a;
+                background: #becfea;
+                top: 20px;
+                z-index: 1;
+            }
+
+            #highscore {
+                background: #78a;
+                position:absolute;
+                z-index: 100;
+
+                font-family: 'Gochi Hand', sans-serif;
+                font-size: 30px;
+                color: #fff;
+
+                width:400px;
+                left: 70px;
+                top: 300px;
+                text-align: center;
+                padding: 30px 0px;
+                display:none;
+            }
+
+            #nick {
+                border: 0px none;
+                background: #78a;
+                color:white;
+                font-family: inherit;
+                font-size: 20px;
+            }
+
+            #submit {
+                cursor:pointer;
+                font-family: inherit;
+                display:block;
+            }
+
+            #favicon {
+                display:none;
+            }
+
+            #edit, #best {
+                width: 400px;
+                position:absolute;
+                right: -442px;
+                top: 20px;
+                z-index: 2;
+                font-family: Arial;
+                font-size:14px;
+                border: 10px solid #000;
+                background: #fff;
+            }
+
+            #edit table {
+                border-collapse: collapse;
+                background: #becfea;
+                float:left;
+                margin: 5px;
+            }
+
+            #edit td {
+                width: 10px;
+                height: 10px;
+                background: #000;
+                margin: 2px;
+                border: 1px solid #fff;
+            }
+
+            #open, #open2 {
+                position:absolute;
+                left: -43px;
+                top: 20px;
+                padding:3px 10px;
+                background: #000;
+                color:white;
+                transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
+                -webkit-transform: rotate(90deg);
+            }
+
+            #best table {
+                margin-top: 20px;
+                margin-left: 50px;
+                margin-bottom: 20px;
+            }
+
+            #open2 {
+                top: 90px;
+                left: -49px;
+            }
+
+            #best td {
+                padding: 5px;
+            }
+
+            h1 {
+                position:absolute;
+                left: -200px;
+                top: 200px;
+                margin:0px;
+                padding:0px;
+                font-size: 60px;
+                font-family: 'Lemon', cursive;
+                color: white;
+                text-shadow: -3px 3px #78a;
+
+                transform: rotate(270deg);
+                -ms-transform: rotate(270deg); /* IE 9 */
+                -webkit-transform: rotate(270deg); /* Safari and Chrome */
+            }
+
+            #stat {
+                font-family: 'Gochi Hand', sans-serif;
+                color: white;
+                text-shadow: 2px 2px #78a;
+                font-weight: bold;
+                font-size: 35px;
+            }
+
+            #xarg > img {
+                position:fixed;
+                right:20px;
+                bottom:20px;
+                z-index:1000;
+                border:0;
+            }
+
+            #restart {
+                position:absolute; 
+                z-index: 100; 
+                left: 170px;
+                top: 330px;
+                font-size: 30px;
+                font-family: 'Gochi Hand', sans-serif;
+                display:none;
+            }
+
+
+            #home {
+                display:none;
+                color: #c33;
+            }
+            
+            #slinks a {
+                color: #c00;
+            }
+
+        </style>
+        {/literal}
+    </head>
+    <body>
+
+        <h1>HTML5 TETRIS</h1>
+
+        <canvas id="canvas"></canvas>
+        <canvas id="preview"></canvas>
+        <canvas id="favicon"></canvas>
+
+        <div id="edit">
+            <div id="open">Edit</div>
+
+            <div><input id="tilesX" type="range" min="5" max="70" value="21" onchange="textBoxEdit(this)"> X <input id="tilesY" type="range" min="5" max="70" value="35" onchange="textBoxEdit(this)"> Tiles</div>
+            <div><input id="tilesSize" type="range" min="5" max="40" value="18" onchange="textBoxEdit(this)"> Tile-Size</div>
+            <div><input id="border" type="range" min="0" max="15" value="2" onchange="textBoxEdit(this)"> Border</div>
+            <div><input id="speedDelay" step="10" type="range" min="40" max="1000" value="200" onchange="textBoxEdit(this)"> Speed Delay</div>
+
+            <div><input type="checkbox" value="1" id="Cpause" onchange="textBoxEdit(this)"> Pause (p)</div>
+            <div><input type="checkbox" value="1" id="Cauto" onchange="textBoxEdit(this)"> Autopilot (a)</div>
+            <div><input type="checkbox" value="1" id="Cshadow" onchange="textBoxEdit(this)" checked="checked"> Shadow (s)</div>
+            <div><input type="checkbox" value="1" id="Cpreview" onchange="textBoxEdit(this)" checked="checked"> Preview (w)</div>
+            <div><input type="checkbox" value="1" id="Cfavicon" onchange="textBoxEdit(this)" checked="checked"> Favicon (f)</div>
+            <div><input type="checkbox" value="1" id="Cgamepad" onchange="textBoxEdit(this)"> Gamepad</div>
+
+            <div>Active shadow and preview reduces the score per tile!</div>
+
+            <div id="tables">
+
+            </div>
+
+            <div id="slinks">
+                Share Custom Tetris<br>
+                <a id="sFB" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.xarg.org%2Fproject%2Ftetris%2F">FB</a> -
+                <a id="sTW" href="http://twitter.com/share?text=HTML5%20Tetris%20made%20by%20%40roberteisele&amp;url=http%3A%2F%2Fwww.xarg.org%2Fproject%2Ftetris%2F">TW</a> - 
+                <a id="sGP" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.xarg.org%2Fproject%2Ftetris%2F">G+</a>
+            </div>
+
+        </div>
+
+        <div id="best">
+            <div id="open2">Score</div>
+
+            <table>
+
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Lines</th>
+                </tr>
+                {local:$i}
+                {php}$i=0;{/php}
+                {fores $score as $s}
+                <tr>
+                    <td>#{!++$i}</td>
+                    <td>{$s.TName}</td>
+                    <td>{!$s.TScore}</td>
+                    <td>{!$s.TLine}</td>
+                </tr>
+                {/fores}
+            </table>
+
+        </div>
+
+        <div id="highscore">
+
+            <div>Enter your name</div>
+
+            <input type="text" id="nick" placeholder="Your name">
+
+            <span id="submit">go</span>
+
+        </div>
+
+        <div id="restart">
+            Click to restart
+        </div>
+
+        <div style="position:absolute;left: 560px;top: 250px;">
+
+            <div style="height: 100px;">
+                <a id="home" href="http://www.xarg.org/project/tetris/">Highscore participation</a>
+            </div>
+            <div id="stat">
+                Score: <span id="score">0</span><br>
+                Lines: <span id="lines">0</span><br>
+            </div>
+
+
+            <span id="OfCourseItsMe">by <a href="http://www.xarg.org/">Robert Eisele</a> (<a href="https://twitter.com/RobertEisele">Twitter</a>)<br>Source &amp; Description (<a href="https://github.com/infusion/HTML5-Tetris">Github</a>)</span>
+
+        </div>
+
+
+        <script src="/download/tetris.js"></script>
+
+        <a id="xarg" href="http://www.xarg.org/projects/"><img width="59" height="61" src="http://www.xarg.org/image/xarg-logo.png" alt="xarg open projects" /></a>
+
+    </body>
 </html>
